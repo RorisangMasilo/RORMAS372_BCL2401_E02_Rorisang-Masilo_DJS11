@@ -28,6 +28,22 @@ const SearchBar = styled.div`
 `;
 
 // const SearchOutlinedIcon = styled.div``;
+const Categories = styled.div`
+  margin: 20px 10px;
+`;
+const Heading = styled.div`
+  align-items: flex-start;
+  color: ${({ theme }) => theme.text_primary}
+  font-size: 22px;
+  font-weight: 540;
+  margin: 10px 14px
+`;
+const BrowseAll = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 14px;
+`;
 
 const Search = () => {
   const [searched, setSearched] = useState("");
