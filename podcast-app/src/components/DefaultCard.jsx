@@ -8,7 +8,13 @@ const Card = styled.div`
   border-radius: 0.6rem;
   padding: 1rem;
 `;
-const DefaultCardText = styled.div``;
+
+const DefaultCardText = styled.div`
+  color: #f2f3f4;
+  font-size: 1.4rem;
+  font-weight: 600;
+`;
+
 const DefaultCardImg = styled.div``;
 
 export const DefaultCard = () => {
