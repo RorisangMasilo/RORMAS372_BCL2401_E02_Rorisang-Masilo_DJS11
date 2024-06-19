@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { SearchOutlinedIcon } from "@mui/material/SearchOutlined";
-import { Category } from " ./utils/data"
+// import { Category } from " ./utils/data";
 
 const SearchMain = styled.div`
   padding: 20px 30px;
@@ -81,8 +81,8 @@ const Search = () => {
       {searched === "" ? (
         <Categories>
           <Heading>Browse All</Heading>
+          <BrowseAll></BrowseAll>
         </Categories>
-        <BrowseAll></BrowseAll> 
       ) : (
         <>Hi</>
       )}
