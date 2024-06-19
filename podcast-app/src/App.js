@@ -2,6 +2,7 @@ import React, { useState, BrowserRouter } from "react";
 import styled from "styled-components";
 import { lightTheme, darkTheme } from "./utils/Themes";
 import Sidebar from "./components/SideBar";
+import NavBar from "./components/NavBar";
 
 const Container = styled.div`
   display: flex;

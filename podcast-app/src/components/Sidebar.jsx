@@ -1,6 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { HomeRounded, CloseRounded } from "@mui/icons-";
+import {
+  HomeRounded,
+  CloseRounded,
+  SearchRounded,
+  FavoriteRounded,
+} from "@mui/icons-";
+import {
+  LightModeRounded,
+  DarkModeRounded,
+  LogOutRounded,
+  CloudUploadRounded,
+} from "@mui/icons-";
 import LogoImage from "../images/logo.png";
 import { Link } from "react-router-dom";
 
@@ -96,7 +107,6 @@ const Sidebar = ({ MenuOpen, setMenuOpen, setDarkMode, darkMode }) => {
   ];
 
   const button = [
-    ,
     {
       fun: () => console.log("Upload"),
       name: "Upload",
