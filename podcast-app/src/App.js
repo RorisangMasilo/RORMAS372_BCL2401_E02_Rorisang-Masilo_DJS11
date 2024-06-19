@@ -1,8 +1,13 @@
-import React, { useState, BrowserRouter } from "react";
-import styled from "styled-components";
+import React, { useState, BrowserRouter, Routes, Route } from "react";
+import styled, { themeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./utils/Themes";
 import Sidebar from "./components/SideBar";
 import NavBar from "./components/NavBar";
+import Dashboard from "./pages/Dashboard";
+import Search from "./pages/Search";
+import DisplayPodcast from "./pages/DisplayPodcast";
+import Favourites from "./pages/Favourite";
+import PodcastDetails from "./pages/PodcastDetails";
 
 const Container = styled.div`
   display: flex;
@@ -43,6 +48,22 @@ function App() {
               setDarkMode={setDarkMode}
               darkMode={darkMode}
             </NavBar>
+            <Routes>
+              <Route path="/" exact element={<Dashboard />}></Route>
+              <Route path="/search" exact element={<Search />}></Route>
+              <Route path="/Profile" exact element={<Profile />}></Route>
+              <Route path="/Favourites" exact element={<Favourites />}></Route>
+              <Route
+                path="/podcast/:id"
+                exact
+                element={<PodcastDetails />}
+              ></Route>
+              <Route
+                path="/showpodcasts/:type"
+                exact
+                element={<DisplayPodcast />}
+              ></Route>
+            </Routes>
             PODCAST
           </Frame>
         </Container>
