@@ -171,7 +171,7 @@ const PodcastCard = () => {
         </CardInfo>
       </div>
       <PlayIcon>
-        {"video" === "video" ? (
+        {"" ? (
           <PlayArrowIcon
             style={{ width: "28px", height: "28px" }}
           ></PlayArrowIcon>
