@@ -26,6 +26,9 @@ const Card = styled.div`
     box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.3);
     filter: brightness(1.3);
   }
+  &: hover ${PlayIcon} {
+    display: flex;
+  }
 `;
 const Favorite = styled(IconButton)`
   color: white;
