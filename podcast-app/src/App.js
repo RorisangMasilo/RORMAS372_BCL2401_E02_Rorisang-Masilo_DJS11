@@ -28,12 +28,14 @@ function App() {
     <themeProvider theme={darkMode ? darkTheme : lightTheme}>
       <BrowserRouter>
         <Container>
-          <Sidebar
-            menuOpen={menuOpen}
-            setMenuOpen={setMenuOpen}
-            setDarkMode={setDarkMode}
-            darkMode={darkMode}
-          ></Sidebar>
+          {menuOpen && (
+            <Sidebar
+              menuOpen={menuOpen}
+              setMenuOpen={setMenuOpen}
+              setDarkMode={setDarkMode}
+              darkMode={darkMode}
+            ></Sidebar>
+          )}
           <Frame>
             <NavBar>
               menuOpen={menuOpen}
