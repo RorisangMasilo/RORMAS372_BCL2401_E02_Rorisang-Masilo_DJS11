@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, Link } from "react";
 import styled from "styled-components";
 import { SearchOutlinedIcon } from "@mui/material/SearchOutlined";
-// import { Category } from " ./utils/data";
+import { Category } from "../utils/Data";
+import { DefaultCard } from "../components/DefaultCard";
 
 const SearchMain = styled.div`
   padding: 20px 30px;
@@ -81,7 +82,16 @@ const Search = () => {
       {searched === "" ? (
         <Categories>
           <Heading>Browse All</Heading>
-          <BrowseAll></BrowseAll>
+          <BrowseAll>
+            {Category.map((category) => (
+              <Link
+                to={`/showpodcasts/${category.name.toLowerCase()}`}
+                style={{ textDecoration: "none" }}
+              >
+                <DefaultCard category={category} />
+              </Link>
+            ))}
+          </BrowseAll>
         </Categories>
       ) : (
         <>Hi</>
