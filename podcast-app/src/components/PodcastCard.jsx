@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Avatar from "@mui/material/Avatar";
 import { IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import HeadphoneIcon from "@mui/icons-material/headphones";
 
 const Card = styled.div`
   position: relative;
@@ -25,47 +27,157 @@ const Card = styled.div`
     filter: brightness(1.3);
   }
 `;
-const Favourite = styled.div`
+const Favorite = styled(IconButton)`
+  color: white;
+  top: 8px;
+  right: 6px;
+  padding: 6px !important;
+  border-radius: 50%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  background: ${({ theme }) => theme.text_secondary + 95} !important;
+  color: white !important;
+  position: absolute !important;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 16px 6px #222423 !important;
+`;
+
+// const FavoriteIcon = styled.div``;
+const CardImage = styled.img`
+  object-fit: cover;
+  width: 220px;
+  height: 140px;
+  border-radius: 6px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  &:hover {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  }
+`;
+const Top = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 150px;
   position: relative;
 `;
-const FavouriteIcon = styled(IconButton)``;
-const CardImage = styled.img``;
-const Top = styled.div``;
-const CardInfo = styled.div``;
-const MainInfo = styled.div``;
-const Title = styled.div``;
-const Description = styled.div``;
-const CreatorsInfo = styled.div``;
-const Creator = styled.div``;
-const CreatorName = styled.div``;
-const Views = styled.div``;
+const CardInfo = styled.div`
+  display: flex;
+  align-items: flex-end;
+  font-weight: 450;
+  padding: 14px 0px 0px 0px;
+  width: 100%;
+`;
+
+const MainInfo = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 4px;
+`;
+
+const Title = styled.div`
+  overflow: hidden;
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  color: ${({ theme }) => theme.text_primary};
+`;
+
+const Description = styled.div`
+  overflow: hidden;
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  color: ${({ theme }) => theme.text_secondary};
+  font-size: 12px;
+`;
+const CreatorsInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 6px;
+`;
+
+const Creator = styled.div`
+  display: flex;
+  gap: 4px;
+  align-items: center;
+`;
+const CreatorName = styled.div`
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: ${({ theme }) => theme.text_secondary};
+`;
+const Views = styled.div`
+    font-size: 10px
+    color: ${({ theme }) => theme.text_secondary};
+    width: max-content;
+`;
+
+const PlayIcon = styled.div`
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  background: #9000ff !important;
+  color: white !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  position: absolute !important;
+  top: 45%;
+  right: 10%;
+  display: none;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 0 16px 4px #9000ff50 !important;
+`;
 
 const PodcastCard = () => {
   return (
     <Card>
-      <Top>
-        <Favourite>
-          <FavoriteIcon></FavoriteIcon>
-        </Favourite>
-        <CardImage></CardImage>
-      </Top>
-      <CardInfo>
-        <MainInfo>
-          <Title></Title>
-          <Description></Description>
-          <CreatorsInfo>
-            <Creator>
-              <Avatar></Avatar>
-              <CreatorName></CreatorName>
-            </Creator>
-            <Views></Views>
-          </CreatorsInfo>
-        </MainInfo>
-      </CardInfo>
+      <div>
+        <Top>
+          <Favorite>
+            <FavoriteIcon
+              style={{ width: "16px", height: "16px" }}
+            ></FavoriteIcon>
+          </Favorite>
+          <CardImage></CardImage>
+        </Top>
+        <CardInfo>
+          <MainInfo>
+            <Title></Title>
+            <Description>{""}</Description>
+            <CreatorsInfo>
+              <Creator>
+                <Avatar style={{ width: "26px", height: "26px " }}></Avatar>
+                <CreatorName></CreatorName>
+              </Creator>
+              <Views></Views>
+            </CreatorsInfo>
+          </MainInfo>
+        </CardInfo>
+      </div>
+      <PlayIcon>
+        {"video" === "video" ? (
+          <PlayArrowIcon
+            style={{ width: "28px", height: "28px" }}
+          ></PlayArrowIcon>
+        ) : (
+          <HeadphoneIcon
+            style={{ width: "28px", height: "28px" }}
+          ></HeadphoneIcon>
+        )}
+      </PlayIcon>
     </Card>
   );
 };
