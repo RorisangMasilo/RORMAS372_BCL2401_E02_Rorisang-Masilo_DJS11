@@ -5,13 +5,11 @@ import {
   CloseRounded,
   SearchRounded,
   FavoriteRounded,
-} from "@mui/icons-";
-import {
   LightModeRounded,
   DarkModeRounded,
   LogOutRounded,
   CloudUploadRounded,
-} from "@mui/icons-";
+} from "@mui/icons-material";
 import LogoImage from "../images/logo.png";
 import { Link } from "react-router-dom";
 
