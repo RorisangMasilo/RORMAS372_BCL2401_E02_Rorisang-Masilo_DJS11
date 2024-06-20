@@ -1,9 +1,16 @@
-import React, { useState, Link } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { SearchOutlinedIcon } from "@mui/material/SearchOutlined";
 import { Category } from "../utils/Data";
 import { DefaultCard } from "../components/DefaultCard";
+import { searchPodcast } from "../api/index.js";
 import { PodcastCard } from "../components/PodcastCard.jsx";
+import TopResult from "../components/TopResult.jsx";
+import MoreResult from "../components/MoreResult.jsx";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { openSnackbar } from "../redux/snackbarSlice.jsx";
+import { CircularProgress } from "@mui/material";
 
 const SearchMain = styled.div`
   padding: 20px 30px;
@@ -110,11 +117,25 @@ const Search = () => {
   const [searched, setSearched] = useState("");
   const [searchedPodcasts, setSearchedPodcasts] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const dispatch = useDispatch();
   const handleChange = async (e) => {
     setSearchedPodcasts([]);
     setLoading(true);
     setSearched(e.target.value);
+    await searchPodcast(e.target.value)
+      .then((res) => {
+        setSearchedPodcasts(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        dispatch(
+          openSnackbar({
+            message: err.message,
+            severity: "error",
+          })
+        );
+      });
+    setLoading(false);
   };
   return (
     <SearchMain>
