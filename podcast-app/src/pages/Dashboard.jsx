@@ -97,6 +97,82 @@ const Dashboard = ({ setSignInOpen }) => {
 
   //user
   const { currentUser } = useSelector((state) => state.user);
+  const token = localStorage.getItem("podstreamtoken");
+  const getUser = async () => {
+    await getUsers(token)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .then((error) => {
+        console.log(error);
+      });
+  };
+
+  const getPopularPodcast = async () => {
+    await getMostPopularPodcast()
+      .then((res) => {
+        setMostPopular(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getCommedyPodcasts = async () => {
+    getPodcastByCategory("comedy")
+      .then((res) => {
+        setComedy(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getNewsPodcasts = async () => {
+    getPodcastByCategory("news")
+      .then((res) => {
+        setNews(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getSportsPodcasts = async () => {
+    getPodcastByCategory("sports")
+      .then((res) => {
+        setsports(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getCrimePodcasts = async () => {
+    getPodcastByCategory("crime")
+      .then((res) => {
+        setCrime(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getallData = async () => {
+    setLoading(true);
+    if (currentUser) {
+      setLoading(true);
+      await getUser();
+    }
+    await getPopularPodcast();
+    await getCommedyPodcasts();
+    await getNewsPodcasts();
+    await getCommedyPodcasts();
+    await getCrimePodcasts();
+    await getSportsPodcasts();
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getallData();
+  }, [currentUser]);
 
   return (
     <DashboardMain>
