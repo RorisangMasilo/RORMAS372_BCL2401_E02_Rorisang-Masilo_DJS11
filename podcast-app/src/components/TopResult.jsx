@@ -33,6 +33,52 @@ const PodcastImage = styled.img`
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.3);
 `;
 
+const PodcastTitle = styled.div`
+  color: ${({ theme }) => theme.text_primary};
+  display: -webkit-box;
+  font-size: 24px;
+  font-weight: 520;
+`;
+
+const UploadInfo = styled.div`
+  display: flex;
+  width: 80%;
+  gap: 12px;
+`;
+
+const Time = styled.div`
+  color: ${({ theme }) => theme.text_secondary};
+  font-size: 14px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (max-width: 560px) {
+    font-size: 10px;
+  }
+`;
+
+const CreatorName = styled.div`
+  color: ${({ theme }) => theme.text_primary};
+  font-size: 14px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (max-width: 560px) {
+    font-size: 10px;
+  }
+`;
+
+const Description = styled.div`
+  color: ${({ theme }) => theme.text_secondary};
+  display: -webkit-box;
+  max-width: 100%;
+  font-size: 14px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 const TopResult = ({ podcast }) => {
   return (
     <SearchedCard to={`/podcast/${podcast?._id}`}>
