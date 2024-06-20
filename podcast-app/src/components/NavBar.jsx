@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Menu, PersonRounded } from "@mui/icons-material";
-import { IconButton } from "@ui/material";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Avatar } from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
+import MenuIcon from "@mui/icons-material/Menu";
+import { IconButton } from "@mui/material";
+import { openSignin } from "../redux/setSigninSlice";
 
-const NavBarDiv = styled.div`
+const NavbarDiv = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 16px 40px;
@@ -34,22 +39,40 @@ const ButtonDiv = styled.div`
   gap: 8px;
 `;
 
-const IconButton = styled(IconButton)`
+const IcoButton = styled(IconButton)`
   color: ${({ theme }) => theme.text_secondary} !important;
 `;
 
-const NavBar = ({ setMenuOpen, menuOpen }) => {
+const Navbar = ({ menuOpen, setMenuOpen, setSignInOpen, setSignUpOpen }) => {
+  const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
   return (
-    <NavBarDiv>
-      <IconButton onClick={() => setMenuOpen(!menuOpen)}>
-        <Menu />
-      </IconButton>
-      <ButtonDiv>
-        <PersonRounded />
-        Login
-      </ButtonDiv>
-    </NavBarDiv>
+    <NavbarDiv>
+      <IcoButton onClick={() => setMenuOpen(!menuOpen)}>
+        <MenuIcon />
+      </IcoButton>
+      {currentUser ? (
+        <Welcome>Welcome, {currentUser.name}</Welcome>
+      ) : (
+        <>&nbsp;</>
+      )}
+      {currentUser ? (
+        <>
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+            <Avatar src={currentUser.img}>
+              {currentUser.name.charAt(0).toUpperCase()}
+            </Avatar>
+          </Link>
+        </>
+      ) : (
+        <ButtonDiv onClick={() => dispatch(openSignin())}>
+          <PersonIcon style={{ fontSize: "18px" }} />
+          Login
+        </ButtonDiv>
+      )}
+    </NavbarDiv>
   );
 };
 
-export default NavBar;
+export default Navbar;
