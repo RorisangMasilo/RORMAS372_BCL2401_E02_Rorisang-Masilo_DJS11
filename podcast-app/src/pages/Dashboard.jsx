@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import PodcastCard from "../components/PodcastCard";
+import { getMostPopularPodcast } from "../api/index";
+import { getPodcastByCategory } from "../api";
+import { PodcastCard } from "../components/PodcastCard.jsx";
+import { getUsers } from "../api/index";
+import { CircularProgress } from "@mui/material";
 
 const DashboardMain = styled.div`
   padding: 20px 30px;
@@ -82,7 +86,18 @@ const DisplayNo = styled.div`
   color: ${({ theme }) => theme.text_primary};
 `;
 
-const Dashboard = () => {
+const Dashboard = ({ setSignInOpen }) => {
+  const [mostPopular, setMostPopular] = useState([]);
+  const [user, setUser] = useState();
+  const [comedy, setComedy] = useState([]);
+  const [news, setNews] = useState([]);
+  const [sports, setsports] = useState([]);
+  const [crime, setCrime] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  //user
+  const { currentUser } = useSelector((state) => state.user);
+
   return (
     <DashboardMain>
       <FilterContainer>
