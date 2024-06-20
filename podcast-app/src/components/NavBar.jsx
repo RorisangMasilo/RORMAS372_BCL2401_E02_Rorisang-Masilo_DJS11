@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,6 +37,18 @@ const ButtonDiv = styled.div`
   border-radius: 12px;
   padding: 8px 10px;
   gap: 8px;
+  &:hover {
+    background-color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.text_primary};
+  }
+`;
+
+const Welcome = styled.div`
+  font-size: 26px;
+  font-weight: 600;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const IcoButton = styled(IconButton)`
