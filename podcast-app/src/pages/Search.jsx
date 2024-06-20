@@ -30,10 +30,51 @@ const SearchBar = styled.div`
   color: ${({ theme }) => theme.text_secondary};
 `;
 
+const SearchedCards = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 14px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    padding: 6px;
+  }
+`;
+
 // const SearchOutlinedIcon = styled.div``;
 const Categories = styled.div`
   margin: 20px 10px;
 `;
+
+const Search_whole = styled.div`
+  max-width: 700px;
+  display: flex;
+  width: 100%;
+  border: 1px solid ${({ theme }) => theme.text_secondary};
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 12px 16px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+  color: ${({ theme }) => theme.text_secondary};
+`;
+const OtherResults = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  gap: 6px;
+  padding: 4px 4px;
+  @media (max-width: 768px) {
+    height: 100%;
+    padding: 4px 0px;
+  }
+`;
+
 const Heading = styled.div`
   align-items: flex-start;
   color: ${({ theme }) => theme.text_primary}
