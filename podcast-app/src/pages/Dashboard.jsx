@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import PodcastCard from "../components/PodcastCard";
@@ -16,11 +17,18 @@ const DashboardMain = styled.div`
 `;
 
 const FilterContainer = styled.div`\
-  display: flex;
-  flex-direction: column;
-  background-color: ${({ theme }) => theme.bg};
-  padding: 20px 30px;
+ display: flex;
+flex-direction: column;
+${({ box, theme }) =>
+  box &&
+  `
+background-color: ${theme.bg};
   border-radius: 10px;
+  padding: 20px 30px;
+`}
+background-color: ${({ theme }) => theme.bg};
+  border-radius: 10px;
+  padding: 20px 30px;
 `;
 
 const Topic = styled.div`
@@ -41,7 +49,12 @@ const Span = styled.div`
   @media (max-width: 768px) {
     font-size: 16px;
   }
+  color: ${({ theme }) => theme.primary};
+  &:hover {
+    transition: 0.2s ease-in-out;
+  }
 `;
+
 const Podcasts = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -50,6 +63,23 @@ const Podcasts = styled.div`
   @media (max-width: 550px) {
     justify-content: center;
   }
+`;
+
+const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+`;
+
+const DisplayNo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: ${({ theme }) => theme.text_primary};
 `;
 
 const Dashboard = () => {
