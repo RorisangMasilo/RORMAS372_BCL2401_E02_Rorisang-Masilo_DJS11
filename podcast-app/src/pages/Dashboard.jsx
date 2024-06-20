@@ -159,43 +159,64 @@ const Dashboard = ({ setSignInOpen }) => {
     setLoading(true);
     try {
       if (currentUser) {
-      await getUser();
+        await getUser();
+      }
+      await Promise.all([
+        getPopularPodcast(),
+        getComedyPodcasts(),
+        getNewsPodcasts(),
+        getCrimePodcasts(),
+        getSportsPodcasts(),
+      ]);
+    } catch (error) {
+      console.log("Error fetching data", error);
+    } finally {
+      setLoading(false);
     }
-    await Promise.all([
-      getPopularPodcast(),
-      getComedyPodcasts(),
-      getNewsPodcasts(),
-      getCrimePodcasts(),
-      getSportsPodcasts(),
-  ]);
-} catch (error) {
-  console.log("Error fetching data", error);
-} finally {
-  setLoading(false);
-}
 
-  useEffect(() => {
-    getAllData();
-  }, [getAllData, currentUser]);
+    useEffect(() => {
+      getAllData();
+    }, [getAllData, currentUser]);
 
-  return (
-    <DashboardMain>
-      {loading ? (
-        <Loader>
-          <CircularProgress />
-        </Loader>
-      ) : (
-        <>
-          {currentUser && user?.podcasts?.length > 0 && (
-            <FilterContainer box={true}>
+    return (
+      <DashboardMain>
+        {loading ? (
+          <Loader>
+            <CircularProgress />
+          </Loader>
+        ) : (
+          <>
+            {currentUser && user?.podcasts?.length > 0 && (
+              <FilterContainer box={true}>
+                <Topic>
+                  Your Uploads
+                  <Link to={`/profile`} style={{ textDecoration: "none" }}>
+                    <Span>Show All</Span>
+                  </Link>
+                </Topic>
+                <Podcasts>
+                  {user?.podcasts.slice(0, 10).map((podcast) => (
+                    <PodcastCard
+                      podcast={podcast}
+                      user={user}
+                      setSignInOpen={setSignInOpen}
+                    />
+                  ))}
+                </Podcasts>
+              </FilterContainer>
+            )}
+            <FilterContainer>
               <Topic>
-                Your Uploads
-                <Link to={`/profile`} style={{ textDecoration: "none" }}>
+                Most Popular
+                <Link
+                  to={`/showpodcasts/mostpopular`}
+                  style={{ textDecoration: "none" }}
+                >
                   <Span>Show All</Span>
                 </Link>
               </Topic>
               <Podcasts>
-                {user?.podcasts.slice(0, 10).map((podcast) => (
+                {mostPopular.slice(0, 10).map((podcast) => (
                   <PodcastCard
                     podcast={podcast}
                     user={user}
@@ -204,105 +225,90 @@ const Dashboard = ({ setSignInOpen }) => {
                 ))}
               </Podcasts>
             </FilterContainer>
-          )}
-          <FilterContainer>
-            <Topic>
-              Most Popular
+            <FilterContainer>
+              <Topic>
+                Comedy
+                <Link
+                  to={`/showpodcasts/comedy`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Span>Show All</Span>
+                </Link>
+              </Topic>
+              <Podcasts>
+                {comedy.slice(0, 10).map((podcast) => (
+                  <PodcastCard
+                    podcast={podcast}
+                    user={user}
+                    setSignInOpen={setSignInOpen}
+                  />
+                ))}
+              </Podcasts>
+            </FilterContainer>
+            <FilterContainer>
               <Link
-                to={`/showpodcasts/mostpopular`}
+                to={`/showpodcasts/news`}
                 style={{ textDecoration: "none" }}
               >
-                <Span>Show All</Span>
+                <Topic>
+                  News
+                  <Span>Show All</Span>
+                </Topic>
               </Link>
-            </Topic>
-            <Podcasts>
-              {mostPopular.slice(0, 10).map((podcast) => (
-                <PodcastCard
-                  podcast={podcast}
-                  user={user}
-                  setSignInOpen={setSignInOpen}
-                />
-              ))}
-            </Podcasts>
-          </FilterContainer>
-          <FilterContainer>
-            <Topic>
-              Comedy
+              <Podcasts>
+                {news.slice(0, 10).map((podcast) => (
+                  <PodcastCard
+                    podcast={podcast}
+                    user={user}
+                    setSignInOpen={setSignInOpen}
+                  />
+                ))}
+              </Podcasts>
+            </FilterContainer>
+            <FilterContainer>
               <Link
-                to={`/showpodcasts/comedy`}
+                to={`/showpodcasts/crime`}
                 style={{ textDecoration: "none" }}
               >
-                <Span>Show All</Span>
+                <Topic>
+                  Crime
+                  <Span>Show All</Span>
+                </Topic>
               </Link>
-            </Topic>
-            <Podcasts>
-              {comedy.slice(0, 10).map((podcast) => (
-                <PodcastCard
-                  podcast={podcast}
-                  user={user}
-                  setSignInOpen={setSignInOpen}
-                />
-              ))}
-            </Podcasts>
-          </FilterContainer>
-          <FilterContainer>
-            <Link to={`/showpodcasts/news`} style={{ textDecoration: "none" }}>
-              <Topic>
-                News
-                <Span>Show All</Span>
-              </Topic>
-            </Link>
-            <Podcasts>
-              {news.slice(0, 10).map((podcast) => (
-                <PodcastCard
-                  podcast={podcast}
-                  user={user}
-                  setSignInOpen={setSignInOpen}
-                />
-              ))}
-            </Podcasts>
-          </FilterContainer>
-          <FilterContainer>
-            <Link to={`/showpodcasts/crime`} style={{ textDecoration: "none" }}>
-              <Topic>
-                Crime
-                <Span>Show All</Span>
-              </Topic>
-            </Link>
-            <Podcasts>
-              {crime.slice(0, 10).map((podcast) => (
-                <PodcastCard
-                  podcast={podcast}
-                  user={user}
-                  setSignInOpen={setSignInOpen}
-                />
-              ))}
-            </Podcasts>
-          </FilterContainer>
-          <FilterContainer>
-            <Link
-              to={`/showpodcasts/sports`}
-              style={{ textDecoration: "none" }}
-            >
-              <Topic>
-                Sports
-                <Span>Show All</Span>
-              </Topic>
-            </Link>
-            <Podcasts>
-              {sports.slice(0, 10).map((podcast) => (
-                <PodcastCard
-                  podcast={podcast}
-                  user={user}
-                  setSignInOpen={setSignInOpen}
-                />
-              ))}
-            </Podcasts>
-          </FilterContainer>
-        </>
-      )}
-    </DashboardMain>
-  );
+              <Podcasts>
+                {crime.slice(0, 10).map((podcast) => (
+                  <PodcastCard
+                    podcast={podcast}
+                    user={user}
+                    setSignInOpen={setSignInOpen}
+                  />
+                ))}
+              </Podcasts>
+            </FilterContainer>
+            <FilterContainer>
+              <Link
+                to={`/showpodcasts/sports`}
+                style={{ textDecoration: "none" }}
+              >
+                <Topic>
+                  Sports
+                  <Span>Show All</Span>
+                </Topic>
+              </Link>
+              <Podcasts>
+                {sports.slice(0, 10).map((podcast) => (
+                  <PodcastCard
+                    podcast={podcast}
+                    user={user}
+                    setSignInOpen={setSignInOpen}
+                  />
+                ))}
+              </Podcasts>
+            </FilterContainer>
+          </>
+        )}
+      </DashboardMain>
+    );
+  };
 };
-
 export default Dashboard;
