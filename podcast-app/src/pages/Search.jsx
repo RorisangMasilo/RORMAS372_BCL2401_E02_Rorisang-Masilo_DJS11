@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { SearchOutlinedIcon } from "@mui/material/SearchOutlined";
 import { Category } from "../utils/Data";
 import { DefaultCard } from "../components/DefaultCard";
+import { PodcastCard } from "../components/PodcastCard.jsx";
 
 const SearchMain = styled.div`
   padding: 20px 30px;
@@ -47,11 +48,31 @@ const BrowseAll = styled.div`
   padding: 14px;
 `;
 
+const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+`;
+
+const DisplayNo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: ${({ theme }) => theme.text_primary};
+`;
+
 const Search = () => {
   const [searched, setSearched] = useState("");
   const [searchedPodcasts, setSearchedPodcasts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = async (e) => {
+    setSearchedPodcasts([]);
+    setLoading(true);
     setSearched(e.target.value);
   };
   return (
