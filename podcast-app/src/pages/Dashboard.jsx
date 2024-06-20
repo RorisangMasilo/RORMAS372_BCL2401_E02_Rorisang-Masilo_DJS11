@@ -2,10 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { getMostPopularPodcast } from "../api/index";
-import { getPodcastByCategory } from "../api";
+import { getMostPopularPodcast, getUsers, getPodcastByCategory } from "../api/index";
 import { PodcastCard } from "../components/PodcastCard.jsx";
-import { getUsers } from "../api/index";
 import { CircularProgress } from "@mui/material";
 
 const DashboardMain = styled.div`
@@ -99,24 +97,22 @@ const Dashboard = ({ setSignInOpen }) => {
   const { currentUser } = useSelector((state) => state.user);
   const token = localStorage.getItem("podstreamtoken");
   const getUser = async () => {
-    await getUsers(token)
-      .then((res) => {
-        setUser(res.data);
-      })
-      .then((error) => {
-        console.log(error);
-      });
+    try {
+      const res = await getUsers(token);
+      setUser(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getPopularPodcast = async () => {
-    await getMostPopularPodcast()
-      .then((res) => {
-        setMostPopular(res.data);
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const res = await getMostPopularPodcast();
+      setMostPopular(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getComedyPodcasts = async () => {
@@ -155,7 +151,7 @@ const Dashboard = ({ setSignInOpen }) => {
       .catch((error) => console.log(error));
   };
 
-  const getAllData = async () => {
+  const getAllData = useCallback(async () => {
     setLoading(true);
     try {
       if (currentUser) {
@@ -172,7 +168,7 @@ const Dashboard = ({ setSignInOpen }) => {
       console.log("Error fetching data", error);
     } finally {
       setLoading(false);
-    }
+    } [currentUser]);
 
     useEffect(() => {
       getAllData();
