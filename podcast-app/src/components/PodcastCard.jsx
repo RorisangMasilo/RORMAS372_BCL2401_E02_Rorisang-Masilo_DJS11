@@ -6,6 +6,24 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import HeadphoneIcon from "@mui/icons-material/headphones";
 
+const PlayIcon = styled.div`
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  background: #9000ff !important;
+  color: white !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  position: absolute !important;
+  top: 45%;
+  right: 10%;
+  display: none;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 0 16px 4px #9000ff50 !important;
+`;
+
 const Card = styled.div`
   position: relative;
   text-decoration: none;

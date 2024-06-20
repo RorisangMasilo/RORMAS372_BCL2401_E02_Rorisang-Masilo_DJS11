@@ -4,7 +4,7 @@ import { SearchOutlinedIcon } from "@mui/material/SearchOutlined";
 import { Category } from "../utils/Data";
 import { DefaultCard } from "../components/DefaultCard";
 import { searchPodcast } from "../api/index.js";
-import { PodcastCard } from "../components/PodcastCard.jsx";
+// import { PodcastCard } from "../components/PodcastCard.jsx";
 import TopResult from "../components/TopResult.jsx";
 import MoreResult from "../components/MoreResult.jsx";
 import { Link } from "react-router-dom";
