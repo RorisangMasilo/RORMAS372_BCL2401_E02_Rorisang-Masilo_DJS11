@@ -49,6 +49,8 @@ const BrowseAll = styled.div`
 
 const Search = () => {
   const [searched, setSearched] = useState("");
+  const [searchedPodcasts, setSearchedPodcasts] = useState([]);
+
   const handleChange = async (e) => {
     setSearched(e.target.value);
   };
@@ -94,7 +96,28 @@ const Search = () => {
           </BrowseAll>
         </Categories>
       ) : (
-        <>Hi</>
+        <>
+          {loading ? (
+            <Loader>
+              <CircularProgress />
+            </Loader>
+          ) : (
+            <SearchedCards>
+              {searchedPodcasts.length === 0 ? (
+                <DisplayNo>No Podcasts Found</DisplayNo>
+              ) : (
+                <>
+                  <TopResult podcast={searchedPodcasts[0]} />
+                  <OtherResults>
+                    {searchedPodcasts.map((podcast) => (
+                      <MoreResult podcast={podcast} />
+                    ))}
+                  </OtherResults>
+                </>
+              )}
+            </SearchedCards>
+          )}
+        </>
       )}
     </SearchMain>
   );
