@@ -1,22 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  opensi: false,
+  openSignin: false,
 };
 
-const signin = createSlice({
-  name: "signin",
+const Signin = createSlice({
+  name: "Signin",
   initialState,
   reducers: {
     openSignin: (state, action) => {
-      state.opensi = true;
+      state.openSignin = true;
     },
     closeSignin: (state) => {
-      state.opensi = false;
+      state.openSignin = false;
     },
   },
 });
 
-export const { openSignin, closeSignin } = signin.action;
+export const { openSignin, closeSignin } = Signin.actions;
 
-export default signin.reducer;
+export default Signin.reducer;
