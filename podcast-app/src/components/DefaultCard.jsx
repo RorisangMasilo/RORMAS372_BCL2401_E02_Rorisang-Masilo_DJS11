@@ -2,9 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Card = styled.div`
-  width: 200px;
-  height: 200px;
-  background-color: #4b7f12;
+  width: 150px;
+  height: 150px;
   border-radius: 0.6rem;
   padding: 1rem;
   &:hover {
@@ -18,14 +17,12 @@ const Card = styled.div`
     width: 250px;
   }
 `;
-
 const DefaultCardText = styled.div`
   color: #f2f3f4;
   font-size: 1.4rem;
   font-weight: 600;
 `;
-
-const DefaultCardImg = styled.div`
+const DefaultCardImg = styled.img`
   height: 90px;
   width: 80px;
   object-fit: cover;
@@ -39,7 +36,7 @@ const FlexContainer = styled.div`
   justify-content: flex-end;
   align-items: flex-end;
 `;
-export const DefaultCard = () => {
+export const DefaultCard = ({ category }) => {
   return (
     <Card style={{ "background-color": `${category.color}` }}>
       <DefaultCardText>{category.name}</DefaultCardText>
