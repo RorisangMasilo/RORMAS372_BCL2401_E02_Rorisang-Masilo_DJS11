@@ -17,15 +17,13 @@ const Container = styled.div`
 const Topic = styled.div`
   color: ${({ theme }) => theme.text_primary};
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 540;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @media (max-width: 768px) {
-    font-size: 18px;
-  }
 `;
-const FavouriteContainer = styled.div`
+
+const FavouritesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
@@ -35,16 +33,73 @@ const FavouriteContainer = styled.div`
   }
 `;
 
-const Favourite = () => {
+const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+`;
+
+const DisplayNo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: ${({ theme }) => theme.text_primary};
+`;
+
+const Favourites = () => {
+  const [user, setUser] = useState();
+  const [Loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  //user
+  const { currentUser } = useSelector((state) => state.user);
+
+  const token = localStorage.getItem("podstreamtoken");
+  const getUsers = async () => {
+    await getUsers(token)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .then((error) => {
+        console.log(error);
+      });
+  };
+
+  const getUser = async () => {
+    if (currentUser) {
+      setLoading(true);
+      await getUser();
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, [currentUser]);
+
   return (
     <Container>
       <Topic>Favourites</Topic>
-      <FavouriteContainer>
-        <PodcastCard></PodcastCard>
-        <PodcastCard></PodcastCard>
-        <PodcastCard></PodcastCard>
-      </FavouriteContainer>
+      {Loading ? (
+        <Loader>
+          <CircularProgress />
+        </Loader>
+      ) : (
+        <FavouritesContainer>
+          {user?.favorites?.length === 0 && (
+            <DisplayNo>No Favourites</DisplayNo>
+          )}
+          {user &&
+            user?.favorites.map((podcast) => (
+              <PodcastCard podcast={podcast} user={user} />
+            ))}
+        </FavouritesContainer>
+      )}
     </Container>
   );
 };
-export default Favourite;
+
+export default Favourites;
