@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { CircularProgress, IconButton } from "@mui/material";
-import { favoritepodcast, getPodcastById, getUsers } from "../api";
+import { favoritePodcast, getPodcastById, getUsers } from "../api";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import EpisodeCard from "../components/EpisodeCard";
@@ -165,7 +165,7 @@ const PodcastDetails = () => {
     setLoading(true);
     try {
       if (podcast) {
-        const res = await favoritepodcast(podcast._id, token);
+        const res = await favoritePodcast(podcast._id, token);
         if (res.status === 200) {
           setFavourite(!favourite);
         }

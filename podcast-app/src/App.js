@@ -6,7 +6,7 @@ import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
 import Search from "./pages/Search";
 import DisplayPodcast from "./pages/DisplayPodcast";
-import Favourites from "./pages/Favourite";
+import Favourites from "./pages/Favourites";
 import PodcastDetails from "./pages/PodcastDetail";
 import Profile from "./pages/Profile";
 

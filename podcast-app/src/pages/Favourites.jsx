@@ -1,6 +1,9 @@
-import React from "react";
-import PodcastCard from "../components/PodcastCard";
 import styled from "styled-components";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { PodcastCard } from "../components/PodcastCard";
+import { getUsers } from "../api/index";
+import { CircularProgress } from "@mui/material";
 
 const Container = styled.div`
   padding: 20px 30px;

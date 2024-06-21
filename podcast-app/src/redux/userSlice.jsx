@@ -1,44 +1,65 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import userReducer from "./userSlice";
-import snackbarReducer from "./snackbarSlice";
-import audioReducer from "./audioplayerSlice";
-import signinReducer from "./setSigninSlice";
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { PersistGate } from "redux-persist/integration/react";
+import { createSlice } from "@reduxjs/toolkit";
 
-const persistConfig = {
-  key: "root",
-  version: 1,
-  storage,
+const initialState = {
+  currentUser: null,
+  loading: false,
+  error: false,
 };
 
-const rootReducer = combineReducers({
-  user: userReducer,
-  snackbar: snackbarReducer,
-  audioplayer: audioReducer,
-  signin: signinReducer,
+export const userSlice = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    loginStart: (state) => {
+      state.loading = true;
+    },
+    loginSuccess: (state, action) => {
+      state.loading = false;
+      state.currentUser = action.payload.user;
+      localStorage.setItem("podstreamtoken", action.payload.token);
+    },
+    loginFailure: (state) => {
+      state.loading = false;
+      state.error = true;
+    },
+    logout: (state) => {
+      state.currentUser = null;
+      state.loading = false;
+      state.error = false;
+      localStorage.removeItem("token");
+    },
+    verified: (state, action) => {
+      if (state.currentUser) {
+        state.currentUser.verified = action.payload;
+      }
+    },
+    displayPodcastFailure: (state) => {
+      state.loading = false;
+      state.error = true;
+    },
+    subscription: (state, action) => {
+      if (state.currentUser.subscribedUsers.includes(action.payload)) {
+        state.currentUser.subscribedUsers.splice(
+          state.currentUser.subscribedUsers.findIndex(
+            (channelId) => channelId === action.payload
+          ),
+          1
+        );
+      } else {
+        state.currentUser.subscribedUsers.push(action.payload);
+      }
+    },
+  },
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+export const {
+  loginStart,
+  loginSuccess,
+  loginFailure,
+  logout,
+  displayPodcastFailure,
+  subscription,
+  verified,
+} = userSlice.actions;
 
-export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
-});
-
-export const persistor = persistStore(store);
+export default userSlice.reducer;

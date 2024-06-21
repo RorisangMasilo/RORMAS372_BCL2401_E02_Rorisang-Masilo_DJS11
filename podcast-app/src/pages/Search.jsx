@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { SearchOutlinedIcon } from "@mui/material/SearchOutlined";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { Category } from "../utils/Data";
 import { DefaultCard } from "../components/DefaultCard";
 import { searchPodcast } from "../api/index.js";
