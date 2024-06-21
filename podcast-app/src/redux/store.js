@@ -1,5 +1,5 @@
 import {
-  configureStor,
+  configureStore,
   combineReducers,
   configureStore,
 } from "@reduxjs/toolkit";
