@@ -22,11 +22,17 @@ You are welcome to use any other technology that you are comfortable with as wel
 
 ## Personal Reflections
 
-\*\*
+**Achievements:** I manage to create multiple files with multiple dependencies.
 
-**Challenges:** The React course in its entirety has shown me how I may need to focus a lot more of my free
+**Challenges:** The React course in its entirety has shown me how I may need to focus & probably relearn everything from scratch, especially constantly debugging and refactoring of code.
 
 **Netlify link:** https://be-heard-podcast-app.netlify.app/
+
+**Instructions:**
+
+1. cd podcast-app
+2. npm start
+3. Open [http://localhost:3000](http://localhost:3000) to view
 
 ## 📦Data
 
