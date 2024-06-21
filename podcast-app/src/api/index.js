@@ -63,7 +63,7 @@ export const addEpisodes = async (podcast, token) =>
   );
 export const favoritePodcast = async (id, token) =>
   await API.post(
-    `/podcasts/favorit`,
+    `/podcasts/favorite`,
     { id: id },
     { headers: { Authorization: `Bearer ${token}` } },
     { withCredentials: true }

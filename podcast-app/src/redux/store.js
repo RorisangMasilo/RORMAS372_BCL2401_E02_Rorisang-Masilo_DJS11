@@ -1,15 +1,11 @@
-import {
-  configureStore,
-  combineReducers,
-  configureStore,
-} from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
-import snackbarSlice from "./snackbarSlice";
+import snackbarReducer from "./snackbarSlice";
 import audioReducer from "./audioplayerSlice";
 import signinReducer from "./setSigninSlice";
 import {
-  persistReducer,
   persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -19,7 +15,6 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
-import { version } from "react";
 
 const persistConfig = {
   key: "root",
@@ -40,7 +35,7 @@ export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializeCheck: {
+      serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),

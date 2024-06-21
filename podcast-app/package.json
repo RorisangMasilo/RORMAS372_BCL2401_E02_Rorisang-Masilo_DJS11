@@ -12,6 +12,10 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.2"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
