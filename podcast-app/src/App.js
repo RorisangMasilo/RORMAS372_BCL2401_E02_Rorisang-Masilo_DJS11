@@ -1,7 +1,7 @@
 import React, { useState, BrowserRouter, Routes, Route } from "react";
 import styled, { themeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./utils/Themes";
-import Sidebar from "./components/SideBar";
+import Sidebar from "./components/Menu";
 import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
 import Search from "./pages/Search";
