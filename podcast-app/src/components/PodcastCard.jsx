@@ -174,7 +174,7 @@ const PodcastCard = () => {
         </CardInfo>
       </div>
       <PlayIcon>
-        {true ? ( // Change to a proper condition based on your logic
+        {true ? (
           <PlayArrowIcon style={{ width: "28px", height: "28px" }} />
         ) : (
           <HeadphoneIcon style={{ width: "28px", height: "28px" }} />
