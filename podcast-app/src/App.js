@@ -1,5 +1,5 @@
 import React, { useState, BrowserRouter, Routes, Route } from "react";
-import styled, { themeProvider } from "styled-components";
+import styled from "styled-components";
 import { lightTheme, darkTheme } from "./utils/Themes";
 import Menu from "./components/Menu";
 import NavBar from "./components/NavBar";
