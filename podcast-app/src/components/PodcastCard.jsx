@@ -4,7 +4,7 @@ import Avatar from "@mui/material/Avatar";
 import { IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import HeadphoneIcon from "@mui/icons-material/headphones";
+import HeadphoneIcon from "@mui/icons-material/Headphones";
 
 const PlayIcon = styled.div`
   padding: 10px;
@@ -44,10 +44,11 @@ const Card = styled.div`
     box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.3);
     filter: brightness(1.3);
   }
-  &: hover ${PlayIcon} {
+  &:hover ${PlayIcon} {
     display: flex;
   }
 `;
+
 const Favorite = styled(IconButton)`
   color: white;
   top: 8px;
@@ -64,7 +65,6 @@ const Favorite = styled(IconButton)`
   box-shadow: 0 0 16px 6px #222423 !important;
 `;
 
-// const FavoriteIcon = styled.div``;
 const CardImage = styled.img`
   object-fit: cover;
   width: 220px;
@@ -75,6 +75,7 @@ const CardImage = styled.img`
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   }
 `;
+
 const Top = styled.div`
   display: flex;
   align-items: center;
@@ -82,6 +83,7 @@ const Top = styled.div`
   height: 150px;
   position: relative;
 `;
+
 const CardInfo = styled.div`
   display: flex;
   align-items: flex-end;
@@ -118,6 +120,7 @@ const Description = styled.div`
   color: ${({ theme }) => theme.text_secondary};
   font-size: 12px;
 `;
+
 const CreatorsInfo = styled.div`
   display: flex;
   align-items: center;
@@ -131,6 +134,7 @@ const Creator = styled.div`
   gap: 4px;
   align-items: center;
 `;
+
 const CreatorName = styled.div`
   font-size: 12px;
   overflow: hidden;
@@ -138,28 +142,11 @@ const CreatorName = styled.div`
   text-overflow: ellipsis;
   color: ${({ theme }) => theme.text_secondary};
 `;
-const Views = styled.div`
-    font-size: 10px
-    color: ${({ theme }) => theme.text_secondary};
-    width: max-content;
-`;
 
-const PlayIcon = styled.div`
-  padding: 10px;
-  border-radius: 50%;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  background: #9000ff !important;
-  color: white !important;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  position: absolute !important;
-  top: 45%;
-  right: 10%;
-  display: none;
-  transition: all 0.4s ease-in-out;
-  box-shadow: 0 0 16px 4px #9000ff50 !important;
+const Views = styled.div`
+  font-size: 10px;
+  color: ${({ theme }) => theme.text_secondary};
+  width: max-content;
 `;
 
 const PodcastCard = () => {
@@ -168,11 +155,9 @@ const PodcastCard = () => {
       <div>
         <Top>
           <Favorite>
-            <FavoriteIcon
-              style={{ width: "16px", height: "16px" }}
-            ></FavoriteIcon>
+            <FavoriteIcon style={{ width: "16px", height: "16px" }} />
           </Favorite>
-          <CardImage></CardImage>
+          <CardImage />
         </Top>
         <CardInfo>
           <MainInfo>
@@ -180,7 +165,7 @@ const PodcastCard = () => {
             <Description>{""}</Description>
             <CreatorsInfo>
               <Creator>
-                <Avatar style={{ width: "26px", height: "26px " }}></Avatar>
+                <Avatar style={{ width: "26px", height: "26px" }} />
                 <CreatorName></CreatorName>
               </Creator>
               <Views></Views>
@@ -189,14 +174,10 @@ const PodcastCard = () => {
         </CardInfo>
       </div>
       <PlayIcon>
-        {"" ? (
-          <PlayArrowIcon
-            style={{ width: "28px", height: "28px" }}
-          ></PlayArrowIcon>
+        {true ? ( // Change to a proper condition based on your logic
+          <PlayArrowIcon style={{ width: "28px", height: "28px" }} />
         ) : (
-          <HeadphoneIcon
-            style={{ width: "28px", height: "28px" }}
-          ></HeadphoneIcon>
+          <HeadphoneIcon style={{ width: "28px", height: "28px" }} />
         )}
       </PlayIcon>
     </Card>
