@@ -7,8 +7,8 @@ import Dashboard from "./pages/Dashboard";
 import Search from "./pages/Search";
 import DisplayPodcast from "./pages/DisplayPodcast";
 import Favourites from "./pages/Favourite";
-import PodcastDetails from "./pages/PodcastDetails";
-import Profile from "./pages/profile";
+import PodcastDetails from "./pages/PodcastDetail";
+import Profile from "./pages/Profile";
 
 const Container = styled.div`
   display: flex;

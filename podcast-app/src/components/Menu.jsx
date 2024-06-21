@@ -13,7 +13,7 @@ import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded";
 import CloseRounded from "@mui/icons-material/CloseRounded";
-import LogoIcon from "../Images/Logo.png";
+import LogoIcon from "../images/Logo.png";
 import { openSignin } from "../redux/setSigninSlice";
 
 const MenuContainer = styled.div`
@@ -99,7 +99,7 @@ const Menu = ({ setMenuOpen, darkMode, setDarkMode, setUploadOpen }) => {
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <Logo>
             <Image src={LogoIcon} />
-            PODSTREAM
+            BeHeard
           </Logo>
         </Link>
         <Close>

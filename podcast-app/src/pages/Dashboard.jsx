@@ -7,7 +7,7 @@ import {
   getUsers,
   getPodcastByCategory,
 } from "../api/index";
-import { PodcastCard } from "../components/PodcastCard.jsx";
+import { PodcastCard } from "../components/PodcastCard";
 import { CircularProgress } from "@mui/material";
 
 const DashboardMain = styled.div`
