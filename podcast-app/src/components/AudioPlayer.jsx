@@ -115,7 +115,7 @@ const Audio = styled.audio`
   }
 `;
 
-const IcoButton = styled(IconButton)`
+const IconButton = styled(IconButton)`
   background-color: ${({ theme }) => theme.text_primary} !important;
   color: ${({ theme }) => theme.bg} !important;
   font-size: 60px !important;
@@ -171,7 +171,7 @@ const VolumeBar = styled.input.attrs({
   }
 `;
 
-const AudioPlayer = ({ episode, podid, currenttime, index }) => {
+const AudioPlayer = ({ episode, podId, currentTime, index }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progressWidth, setProgressWidth] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -187,7 +187,7 @@ const AudioPlayer = ({ episode, podid, currenttime, index }) => {
     setDuration(duration);
     dispatch(
       setCurrentTime({
-        currenttime: currentTime,
+        currentTime: currentTime,
       })
     );
   };
@@ -201,7 +201,7 @@ const AudioPlayer = ({ episode, podid, currenttime, index }) => {
   const goToNextPodcast = () => {
     //from the podid and index, get the next podcast
     //dispatch the next podcast
-    if (podid.episodes.length === index + 1) {
+    if (podId.episodes.length === index + 1) {
       dispatch(
         openSnackbar({
           message: "This is the last episode",
@@ -215,17 +215,17 @@ const AudioPlayer = ({ episode, podid, currenttime, index }) => {
       dispatch(
         openPlayer({
           type: "audio",
-          podid: podid,
+          podId: podId,
           index: index + 1,
-          currenttime: 0,
-          episode: podid.episodes[index + 1],
+          currentTime: 0,
+          episode: podId.episodes[index + 1],
         })
       );
     }, 10);
   };
 
   const goToPreviousPodcast = () => {
-    //from the podid and index, get the next podcast
+    //from the podId and index, get the next podcast
     //dispatch the next podcast
     if (index === 0) {
       dispatch(
@@ -241,10 +241,10 @@ const AudioPlayer = ({ episode, podid, currenttime, index }) => {
       dispatch(
         openPlayer({
           type: "audio",
-          podid: podid,
+          podId: podId,
           index: index - 1,
-          currenttime: 0,
-          episode: podid.episodes[index - 1],
+          currentTime: 0,
+          episode: podId.episodes[index - 1],
         })
       );
     }, 10);
@@ -253,7 +253,7 @@ const AudioPlayer = ({ episode, podid, currenttime, index }) => {
   return (
     <Container>
       <Left>
-        <Image src={podid?.thumbnail} />
+        <Image src={podId?.thumbnail} />
         <PodData>
           <Title>{episode?.name}</Title>
           <Artist>{episode?.creator.name}</Artist>
@@ -272,7 +272,7 @@ const AudioPlayer = ({ episode, podid, currenttime, index }) => {
             autoPlay
             controls
             onPlay={() => {
-              audioRef.current.currentTime = currenttime;
+              audioRef.current.currentTime = currentTime;
             }}
             src={episode?.file}
           />

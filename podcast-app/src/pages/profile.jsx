@@ -27,7 +27,7 @@ const ProfileName = styled.div`
   font-weight: 500;
 `;
 
-const Profile_email = styled.div`
+const ProfileEmail = styled.div`
   color: #2b6fc2;
   font-size: 14px;
   font-weight: 400;
@@ -163,7 +163,7 @@ const Profile = () => {
 
         <ProfileContainer>
           <ProfileName>{name}</ProfileName>
-          <Profile_email>Email: {user?.email}</Profile_email>
+          <ProfileEmail>Email: {user?.email}</ProfileEmail>
         </ProfileContainer>
       </UserDetails>
       {currentUser && user?.podcasts.length > 0 && (

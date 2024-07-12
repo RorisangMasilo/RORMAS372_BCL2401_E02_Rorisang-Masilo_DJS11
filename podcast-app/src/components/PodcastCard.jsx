@@ -4,7 +4,7 @@ import styled from "styled-components";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
 import { IconButton } from "@mui/material";
-import { favoritePodcast } from "../api";
+// import { favouritePodcast } from "../api";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";

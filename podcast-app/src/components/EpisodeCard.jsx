@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { closePlayer, openPlayer } from "../redux/audioplayerSlice";
+import { closePlayer, openPlayer } from "../redux/audioPlayerSlice";
 import { addView } from "../api";
 import { openSnackbar } from "../redux/snackbarSlice";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
@@ -63,11 +63,11 @@ const ImageContainer = styled.div`
   height: 100px;
 `;
 
-const Episodecard = ({ episode, podid, user, type, index }) => {
+const EpisodeCard = ({ episode, podId, user, type, index }) => {
   const dispatch = useDispatch();
 
-  const addviewtToPodcast = async () => {
-    await addView(podid._id).catch((err) => {
+  const addViewToPodcast = async () => {
+    await addView(podId._id).catch((err) => {
       dispatch(
         openSnackbar({
           message: err.message,
@@ -80,16 +80,16 @@ const Episodecard = ({ episode, podid, user, type, index }) => {
   return (
     <Card
       onClick={async () => {
-        await addviewtToPodcast();
+        await addViewToPodcast();
         if (type === "audio") {
           //open audio player
           dispatch(
             openPlayer({
               type: "audio",
               episode: episode,
-              podid: podid,
+              podId: podId,
               index: index,
-              currenttime: 0,
+              currentTime: 0,
             })
           );
         } else {
@@ -99,9 +99,9 @@ const Episodecard = ({ episode, podid, user, type, index }) => {
               openPlayer({
                 type: "video",
                 episode: episode,
-                podid: podid,
+                podId: podId,
                 index: index,
-                currenttime: 0,
+                currentTime: 0,
               })
             )
           );
@@ -109,7 +109,7 @@ const Episodecard = ({ episode, podid, user, type, index }) => {
       }}
     >
       <ImageContainer>
-        <Image src={podid?.thumbnail} />
+        <Image src={podId?.thumbnail} />
         <PlayCircleOutlineIcon
           style={{
             position: "absolute",
@@ -129,4 +129,4 @@ const Episodecard = ({ episode, podid, user, type, index }) => {
   );
 };
 
-export default Episodecard;
+export default EpisodeCard;
